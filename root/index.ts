@@ -1,8 +1,6 @@
-import express from "express";
-import { AppDataSource } from "./db/data-source";
-import dotenv from "./config/index";
-
-const app = express();
+import { app } from "./src/app";
+import { AppDataSource } from "./src/db/data-source";
+import dotenv from "./src/config/index";
 
 AppDataSource.initialize()
   .then(async () => {
