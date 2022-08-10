@@ -14,7 +14,9 @@
     // TSC가 코드를 컴파일할 자바스크립트 버전
     "target": "es2016",
     //플래그 esModuleInterop를 사용하면 es6모듈 사양 에 따라 CommonJS 모듈을 가져올 수 있습니다 .
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   // TSC가 타입스크립트 파일을 찾을 디렉터리
   "include": ["root/**/*"],
