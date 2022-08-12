@@ -8,19 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = require("../app");
 const data_source_1 = require("../db/data-source");
-const config_1 = __importDefault(require("../config"));
 data_source_1.AppDataSource.initialize()
     .then(() => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("connection success");
-    app_1.app.listen(config_1.default.PORT, () => {
-        console.log(`${config_1.default.PORT}번 포트 온`);
-    });
+    console.log("prostgre DB connection success");
+    const server = new app_1.Server();
+    server.listen();
 }))
     .catch((error) => {
     console.log(error);
