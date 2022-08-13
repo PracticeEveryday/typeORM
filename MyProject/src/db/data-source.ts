@@ -1,10 +1,10 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { User } from "./entity/user.entity";
+import { UserEntity } from "./entity/user.entity";
 
 import dotenv from "../config/index";
 
-export const AppDataSource = new DataSource({
+export const MyDataSource = new DataSource({
   type: "postgres",
   host: dotenv.DB_HOST,
   port: 5432,
@@ -13,5 +13,5 @@ export const AppDataSource = new DataSource({
   database: dotenv.DB_DBNAME,
   synchronize: true,
   logging: false,
-  entities: [User],
+  entities: [UserEntity],
 });

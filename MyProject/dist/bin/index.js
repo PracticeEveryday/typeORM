@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = require("../app");
 const data_source_1 = require("../db/data-source");
-data_source_1.AppDataSource.initialize()
+data_source_1.MyDataSource.initialize()
     .then(() => __awaiter(void 0, void 0, void 0, function* () {
     console.log("prostgre DB connection success");
     const server = new app_1.Server();

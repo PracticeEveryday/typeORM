@@ -1,7 +1,7 @@
 import { Server } from "../app";
-import { AppDataSource } from "../db/data-source";
+import { MyDataSource } from "../db/data-source";
 
-AppDataSource.initialize()
+MyDataSource.initialize()
   .then(async () => {
     console.log("prostgre DB connection success");
 

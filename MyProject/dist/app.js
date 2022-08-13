@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Server = void 0;
 const express_1 = __importDefault(require("express"));
-const api_1 = require("./api");
+const user_controller_1 = require("./controller/user.controller");
 const morgan_1 = __importDefault(require("morgan"));
-const errorMiddleware_1 = require("./api/middlewares/errorMiddleware");
+const errorMiddleware_1 = require("./setting/middlewares/errorMiddleware");
 const config_1 = __importDefault(require("./config"));
 class Server {
     constructor() {
@@ -15,7 +15,8 @@ class Server {
         this.app = app;
     }
     setRouter() {
-        this.app.use(api_1.router);
+        this.userController = new user_controller_1.UserController();
+        this.app.use("/api/users", this.userController.router);
     }
     setMiddleware() {
         this.app.use(express_1.default.urlencoded({ extended: true }));

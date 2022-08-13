@@ -1,5 +1,7 @@
 import express from "express";
 
+import { UserController } from "./controller/user.controller";
+
 import morgan from "morgan";
 import { errorMiddleware } from "./setting/middlewares/errorMiddleware";
 
@@ -7,12 +9,16 @@ import dotenv from "./config";
 
 class Server {
   public app: express.Application;
+  private userController: UserController;
   constructor() {
     const app: express.Application = express();
     this.app = app;
   }
 
-  private setRouter() {}
+  private setRouter() {
+    this.userController = new UserController();
+    this.app.use("/api/users", this.userController.router);
+  }
 
   private setMiddleware() {
     this.app.use(express.urlencoded({ extended: true }));

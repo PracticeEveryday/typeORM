@@ -15,7 +15,8 @@
     "strict": true,
     // TSC가 코드를 컴파일할 자바스크립트 버전
     "target": "es2015",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "strictPropertyInitialization": false /* Enable strict checking of property initialization in classes. */
   },
   // TSC가 타입스크립트 파일을 찾을 디렉터리
   "include": ["src/**/*"],
