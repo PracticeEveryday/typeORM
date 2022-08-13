@@ -1,8 +1,7 @@
 import express from "express";
 
-import { router } from "./api";
 import morgan from "morgan";
-import { errorMiddleware } from "./api/middlewares/errorMiddleware";
+import { errorMiddleware } from "./setting/middlewares/errorMiddleware";
 
 import dotenv from "./config";
 
@@ -13,9 +12,7 @@ class Server {
     this.app = app;
   }
 
-  private setRouter() {
-    this.app.use(router);
-  }
+  private setRouter() {}
 
   private setMiddleware() {
     this.app.use(express.urlencoded({ extended: true }));
