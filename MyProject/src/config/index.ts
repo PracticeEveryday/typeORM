@@ -13,4 +13,5 @@ export default {
   DB_PASSWD: process.env.DB_PASSWD,
   DB_USERNAME: process.env.DB_USERNAME || "root",
   DB_DBNAME: process.env.DB_DBNAME || "test",
+  DB_URL: process.env.DB_URL,
 };
