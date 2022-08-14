@@ -44,6 +44,8 @@ components:
           schema:
             type: object
             properties:
+              email: test@test.com
+              password: 1234
     BadRequest:
       description: bad request
       content:

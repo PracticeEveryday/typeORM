@@ -18,6 +18,18 @@
                 type: string
     responses:
       "200":
-        description: "succ"
+        description: user login success
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: test@test.com
+                password:
+                  type: string
+                  example: 1234
       "404":
         description: "fail"
