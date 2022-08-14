@@ -42,7 +42,18 @@ export class UserService {
   };
 
   public deleteUser = async (userId: string) => {
-    const deletedUser = await this.userRepository.delete(userId);
-    return deletedUser;
+    const user = await this.userRepository.findOne({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!user) {
+      // 가입 이메일 없음.
+      throw new HttpException(404, "해당 이메일로 가입한 유저가 없습니다.");
+    } else {
+      const deletedUser = await this.userRepository.delete(userId);
+      return deletedUser;
+    }
   };
 }
