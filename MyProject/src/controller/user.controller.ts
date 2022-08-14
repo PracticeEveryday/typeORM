@@ -55,9 +55,32 @@ export class UserController {
     }
   };
 
+  // 회원 비밀번호 초기화
+  public passwordInitialization = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const userId = req.user;
+      const initializedUser = await this.userService.passwordInitialization(
+        userId
+      );
+
+      res.status(200).json(initializedUser);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   public routes() {
     this.router.post("/register", this.register);
     this.router.post("/login", this.login);
     this.router.delete("/withdrawal", checkLogin, this.deleteUser);
+    this.router.put(
+      "/passwordInitialization",
+      checkLogin,
+      this.passwordInitialization
+    );
   }
 }

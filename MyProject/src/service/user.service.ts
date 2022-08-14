@@ -15,6 +15,7 @@ export class UserService {
     this.userRepository = MyDataSource.getRepository("user");
   }
 
+  // 회원가입
   public register = async (user: UserEntity): Promise<UserEntity> => {
     const foundUser = await this.userRepository.findOne({
       where: {
@@ -30,6 +31,7 @@ export class UserService {
     }
   };
 
+  // 로그인
   public login = async (
     email: string,
     password: string
@@ -53,6 +55,7 @@ export class UserService {
     }
   };
 
+  // 회원 탈퇴
   public deleteUser = async (userId: string): Promise<DeleteResult> => {
     const foundUser = await this.userRepository.findOne({
       where: {
@@ -66,6 +69,23 @@ export class UserService {
     } else {
       const deletedUser = await this.userRepository.delete(userId);
       return deletedUser;
+    }
+  };
+
+  // 비밀변호 초기화
+  public passwordInitialization = async (userId: string) => {
+    const foundUser = await this.userRepository.findOne({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!foundUser) {
+      throw new HttpException(404, "해당 이메일로 가입한 유저가 없습니다.");
+    } else {
+      // 문자 숫자 난수 조합 8자리
+      foundUser.password = Math.random().toString(36).substr(2, 11);
+      return foundUser;
     }
   };
 }
