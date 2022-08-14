@@ -7,7 +7,7 @@ import config from "../../config";
 declare global {
   namespace Express {
     interface Request {
-      user;
+      user: string;
     }
   }
 }
@@ -43,7 +43,7 @@ const checkLogin = (req: Request, res: Response, next: NextFunction) => {
             token,
             config.JWT_KEY as string
           ) as jwt.JwtPayload;
-          req.user = decoded.userId as Request;
+          req.user = decoded.userId;
           next();
         }
       }
