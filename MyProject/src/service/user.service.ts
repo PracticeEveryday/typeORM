@@ -13,7 +13,7 @@ export class UserService {
     this.userRepository = MyDataSource.getRepository("user");
   }
 
-  public create = async (user: UserEntity): Promise<UserEntity> => {
+  public register = async (user: UserEntity): Promise<UserEntity> => {
     const newUser = await this.userRepository.save(user);
     return newUser;
   };
@@ -33,11 +33,16 @@ export class UserService {
       throw new HttpException(404, "해당 이메일로 가입한 유저가 없습니다.");
     } else if (user.password === password) {
       // 로그인
-      const token = makeToken({ user: user.id });
+      const token = makeToken({ userId: user.id });
       return { token };
     } else {
       // 비밀번호 다름
       throw new HttpException(400, "비밀번호가 틀립니다.");
     }
+  };
+
+  public deleteUser = async (userId: string) => {
+    const deletedUser = await this.userRepository.delete(userId);
+    return deletedUser;
   };
 }
