@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { UserEntity } from "../db/entity/user.entity";
 import { UserService } from "../service/user.service";
-import { HttpException } from "../setting/exception/httpException";
+
 export class UserController {
   public router: Router;
   private userService: UserService;
@@ -16,7 +16,7 @@ export class UserController {
     try {
       const user = req.body as UserEntity;
       const newUser = await this.userService.create(user);
-      res.status(200).json(newUser);
+      res.status(201).json(newUser);
     } catch (error) {
       next(error);
     }
@@ -32,6 +32,7 @@ export class UserController {
       next(error);
     }
   };
+
   public routes() {
     this.router.post("/", this.create);
     this.router.post("/login", this.login);

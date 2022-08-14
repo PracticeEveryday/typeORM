@@ -1,6 +1,8 @@
 import { UserEntity } from "../db/entity/user.entity";
 import { UserRepository } from "../repository/user.repository";
 
+import { makeToken } from "../utils/jwtUtil";
+
 import { HttpException } from "../setting/exception/httpException";
 import { MyDataSource } from "../db/data-source";
 
@@ -19,7 +21,7 @@ export class UserService {
   public login = async (
     email: string,
     password: string
-  ): Promise<UserEntity> => {
+  ): Promise<{ token: string } | UserEntity> => {
     const user = await this.userRepository.findOne({
       where: {
         email: email,
@@ -31,10 +33,11 @@ export class UserService {
       throw new HttpException(404, "해당 이메일로 가입한 유저가 없습니다.");
     } else if (user.password === password) {
       // 로그인
+      const token = makeToken({ user: user.id });
+      return { token };
     } else {
       // 비밀번호 다름
       throw new HttpException(400, "비밀번호가 틀립니다.");
     }
-    return user;
   };
 }

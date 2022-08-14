@@ -9,6 +9,8 @@ export default {
   // 백엔드 포트번호
   PORT: process.env.SERVER_PORT || 5000,
 
+  JWT_KEY: process.env.JWT_KEY,
+
   DB_HOST: process.env.DB_HOST || "localhost",
   DB_PASSWD: process.env.DB_PASSWD,
   DB_USERNAME: process.env.DB_USERNAME || "root",
