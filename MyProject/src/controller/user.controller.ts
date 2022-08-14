@@ -34,7 +34,7 @@ export class UserController {
   };
 
   public routes() {
-    this.router.post("/", this.create);
+    this.router.post("/register", this.create);
     this.router.post("/login", this.login);
   }
 }
