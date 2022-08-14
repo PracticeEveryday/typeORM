@@ -1,0 +1,23 @@
+/api/users/login:
+  post:
+    tags:
+      - user
+    summary: 로그인 API 입니다.
+    description: (필수) email, password
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+              password:
+                type: string
+    responses:
+      "200":
+        description: "succ"
+      "404":
+        description: "fail"

@@ -1,0 +1,63 @@
+openapi: "3.0.0"
+info:
+  version: 0.4.0
+  title: eedited API docs
+  description: eedited의 API 문서입니다
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:5000/
+tags:
+  - name: user
+  - description: User API 입니다.
+paths:
+  /api/users/login:
+    $ref: "./paths/user.yaml#/~1api~1users~1login"
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - email
+        - password
+        - name
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        name:
+          type: string
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+  responses:
+    successResponse:
+      description: successful request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+    BadRequest:
+      description: bad request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    InternalServerError:
+      description: server error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
