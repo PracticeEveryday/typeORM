@@ -14,7 +14,11 @@ export class UserController {
   }
 
   // 회원가입
-  public register = async (req: Request, res: Response, next: NextFunction) => {
+  private register = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
     try {
       const user = req.body as UserEntity;
       const newUser = await this.userService.register(user);
@@ -25,7 +29,7 @@ export class UserController {
   };
 
   // 로그인
-  public login = async (req: Request, res: Response, next: NextFunction) => {
+  private login = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { email, password } = req.body;
       const user = await this.userService.login(email, password);
@@ -37,7 +41,7 @@ export class UserController {
   };
 
   // 회원 탈퇴
-  public deleteUser = async (
+  private deleteUser = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -56,7 +60,7 @@ export class UserController {
   };
 
   // 회원 비밀번호 초기화
-  public passwordInitialization = async (
+  private passwordInitialization = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -73,7 +77,7 @@ export class UserController {
     }
   };
 
-  public routes() {
+  private routes() {
     this.router.post("/register", this.register);
     this.router.post("/login", this.login);
     this.router.delete("/withdrawal", checkLogin, this.deleteUser);
