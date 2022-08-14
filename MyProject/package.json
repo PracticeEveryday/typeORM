@@ -31,6 +31,6 @@
     "start": "tsc-watch --onSuccess \"node dist/bin/index.js\"",
     "typeorm": "typeorm-ts-node-commonjs",
     "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile swagger.yaml --type yaml",
-    "predev": "npm run api-docs"
+    "prestart": "npm run api-docs"
   }
 }
