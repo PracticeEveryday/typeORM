@@ -2,6 +2,8 @@ import { Router, Request, Response, NextFunction } from "express";
 import { UserEntity } from "../db/entity/user.entity";
 import { UserService } from "../service/user.service";
 
+import { userValidate, userValidateOptional } from "./validator/user.validator";
+
 import { checkLogin } from "../setting/middlewares/checkLogin";
 export class UserController {
   public router: Router;
@@ -78,7 +80,7 @@ export class UserController {
   };
 
   private routes() {
-    this.router.post("/register", this.register);
+    this.router.post("/register", userValidate, this.register);
     this.router.post("/login", this.login);
     this.router.delete("/withdrawal", checkLogin, this.deleteUser);
     this.router.put(

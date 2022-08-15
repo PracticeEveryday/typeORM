@@ -1,3 +1,60 @@
+/api/users/register:
+  post:
+    tags:
+      - user
+    summary: 로그인 API 입니다.
+    description: (필수) email, password, name
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+                example: test@test.com
+              password:
+                type: string
+                example: 1234
+              name:
+                type: string
+                example: lee
+    responses:
+      "200":
+        description: user login success
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: test@test.com
+                password:
+                  type: string
+                  example: 1234
+                name:
+                  type: string
+                  example: lee
+                id:
+                  type: uuid
+                  example: d45f15b7-faf2-46ee-906a-71253bc2192a
+      "400":
+        description: "email overlap"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: number
+                  example: 400
+                message:
+                  type: string
+                  example: 이미 가입된 이메일입니다.
 /api/users/login:
   post:
     tags:

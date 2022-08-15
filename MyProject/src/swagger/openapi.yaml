@@ -11,6 +11,8 @@ tags:
   - name: user
   - description: User API 입니다.
 paths:
+  /api/users/register:
+    $ref: "./paths/user.yaml#/~1api~1users~1register"
   /api/users/login:
     $ref: "./paths/user.yaml#/~1api~1users~1login"
 components:
