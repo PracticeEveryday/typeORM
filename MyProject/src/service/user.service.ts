@@ -85,6 +85,7 @@ export class UserService {
     } else {
       // 문자 숫자 난수 조합 8자리
       foundUser.password = Math.random().toString(36).substr(2, 11);
+      await this.userRepository.save(foundUser);
       return foundUser;
     }
   };
