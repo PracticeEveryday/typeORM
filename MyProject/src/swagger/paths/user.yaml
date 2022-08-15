@@ -2,7 +2,7 @@
   post:
     tags:
       - user
-    summary: 로그인 API 입니다.
+    summary: 회원가입 API 입니다.
     description: (필수) email, password, name
     requestBody:
       required: true
@@ -81,12 +81,111 @@
             schema:
               type: object
               properties:
+                token:
+                  type: string
+                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2EyOTNmOS0xZTNhLTQzYzUtOWU2MC01MzBiZWU0YjY5NTIiLCJpYXQiOjE2NjA1NDMzNTUsImV4cCI6MTY2MDYyOTc1NX0.8oCflJ4idcktv06e4nW_Ma5pqZ9ECkSnqmylfAIN0_c
+      "400":
+        description: "password fail"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: number
+                  example: 400
+                message:
+                  type: string
+                  example: 비밀번호가 틀립니다.
+      "404":
+        description: "email not founded"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: number
+                  example: 400
+                message:
+                  type: string
+                  example: 해당 이메일로 가입한 유저가 없습니다.
+/api/users/withdrawal:
+  delete:
+    tags:
+      - user
+    summary: 로그아웃 API 입니다.
+    description: (필수) accessToken
+    security:
+      - bearerAuth: []
+    responses:
+      "200":
+        description: user delete succ
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: succ
+                raw:
+                  type: array
+                  example: []
+                affected:
+                  type: number
+                  example: 1
+      "404":
+        description: "email not founded"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: number
+                  example: 400
+                message:
+                  type: string
+                  example: 해당 이메일로 가입한 유저가 없습니다.
+/api/users/passwordInitialization:
+  put:
+    tags:
+      - user
+    summary: 비밀번호 초기화 API 입니다.
+    description: (필수) accessToken
+    security:
+      - bearerAuth: []
+    responses:
+      "200":
+        description: user password initialization succ
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: 79bffa83-8087-40ae-a55b-e7b297b560fb
                 email:
                   type: string
-                  format: email
-                  example: test@test.com
+                  example: test2@test.com
                 password:
                   type: string
-                  example: 1234
+                  example: dlas5efpmps
+                name:
+                  type: string
+                  example: lee
       "404":
-        description: "fail"
+        description: "email not founded"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: number
+                  example: 400
+                message:
+                  type: string
+                  example: 해당 이메일로 가입한 유저가 없습니다.

@@ -15,6 +15,10 @@ paths:
     $ref: "./paths/user.yaml#/~1api~1users~1register"
   /api/users/login:
     $ref: "./paths/user.yaml#/~1api~1users~1login"
+  /api/users/withdrawal:
+    $ref: "./paths/user.yaml#/~1api~1users~1withdrawal"
+  /api/users/passwordInitialization:
+    $ref: "./paths/user.yaml#/~1api~1users~1passwordInitialization"
 components:
   schemas:
     User:

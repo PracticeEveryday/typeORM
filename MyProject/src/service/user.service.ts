@@ -17,6 +17,8 @@ export class UserService {
 
   // 회원가입
   public register = async (user: UserEntity): Promise<UserEntity> => {
+    // undefined면 제일 위에 아이를 가져옴...
+    // validator로 체크했는데 어떻게 해야 할까?
     const foundUser = await this.userRepository.findOne({
       where: {
         email: user.email,

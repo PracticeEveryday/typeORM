@@ -3,6 +3,7 @@ import express from "express";
 import { UserController } from "./controller/user.controller";
 
 import morgan from "morgan";
+import cors from "cors";
 import { errorMiddleware } from "./setting/middlewares/errorMiddleware";
 
 import swaggerUi from "swagger-ui-express";
@@ -28,6 +29,7 @@ class Server {
   }
 
   private setMiddleware() {
+    this.app.use(cors());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     this.app.use(morgan("dev"));
