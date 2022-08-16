@@ -41,6 +41,10 @@ export class UserService {
     email: string,
     password: string
   ): Promise<{ token: string } | UserEntity> => {
+    if (email === undefined) {
+      throw new HttpException(400, "이메일을 입력하세요");
+    }
+
     const foundUser = await this.userRepository.findOne({
       where: {
         email: email,
