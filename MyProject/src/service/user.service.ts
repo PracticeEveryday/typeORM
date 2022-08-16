@@ -17,6 +17,9 @@ export class UserService {
 
   // 회원가입
   public register = async (user: UserEntity): Promise<UserEntity> => {
+    if (user.email === undefined) {
+      throw new HttpException(400, "이메일을 입력하세요");
+    }
     // undefined면 제일 위에 아이를 가져옴...
     // validator로 체크했는데 어떻게 해야 할까?
     const foundUser = await this.userRepository.findOne({
