@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  backend_server:
+    restart: "on-failure"
+    build:
+      context: "./"
+      dockerfile: Dockerfile
+    container_name: "typeorm-practice"
+    ports:
+      - 5000:5000
+    links:
+      - postgres_server
+
+  postgres_server:
+    restart: "on-failure"
+    image: postgres:alpine
+    container_name: "postgres-app"
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres_password
