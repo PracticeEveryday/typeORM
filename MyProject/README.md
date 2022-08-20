@@ -1,7 +1,32 @@
-# Awesome Project Build with TypeORM
+# TypeORM CRUD Practices
 
-Steps to run this project:
+- TypeORM을 이용한 CURD Example입니다.
 
-1. Run `npm i` command
-2. Setup database settings inside `data-source.ts` file
-3. Run `npm start` command
+## Getting Started
+
+```js
+git clone https://github.com/PracticeEveryday/typeORM.git
+cd MyProject
+yarn install
+yarn start
+```
+
+## Getting test
+
+```js
+yarn test
+```
+
+## Test api
+
+- http://localhost:5000
+- response: Hello
+
+## Using Stack
+
+- NodeJs
+- TypeScript
+- PostgreSQL
+- Mocha
+
+## Go to http://localhost:5000/swagger becuase to check API

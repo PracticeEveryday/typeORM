@@ -34,6 +34,10 @@ class App {
     this.app.use(express.json());
     this.app.use(morgan("dev"));
 
+    this.app.get("/", (req, res) => {
+      res.status(200).send("Hello");
+    });
+
     // swagger
     this.app.use(
       "/swagger",
