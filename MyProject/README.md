@@ -38,5 +38,6 @@ yarn test
 - TypeScript
 - PostgreSQL
 - Mocha
+- Docker / Docker-compose
 
 ## Go to http://localhost:5000/swagger becuase to check API
