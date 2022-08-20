@@ -3,7 +3,7 @@ services:
   backend_server:
     restart: "on-failure"
     build:
-      context: "./"
+      context: "../"
       dockerfile: Dockerfile
     container_name: "typeorm-practice"
     ports:
