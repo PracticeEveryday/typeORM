@@ -10,9 +10,9 @@ import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
 import path from "path";
 
-import dotenv from "./config";
+import config from "./config";
 
-class Server {
+class App {
   public app: express.Application;
   private userController: UserController;
   private swaggerSpec;
@@ -21,10 +21,10 @@ class Server {
     const app: express.Application = express();
     this.app = app;
     this.swaggerSpec = YAML.load(path.join(__dirname, "../swagger.yaml"));
+    this.userController = new UserController();
   }
 
   private setRouter() {
-    this.userController = new UserController();
     this.app.use("/api/users", this.userController.router);
   }
 
@@ -33,6 +33,7 @@ class Server {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     this.app.use(morgan("dev"));
+
     // swagger
     this.app.use(
       "/swagger",
@@ -44,10 +45,10 @@ class Server {
     this.app.use(errorMiddleware);
   }
 
-  public listen() {
+  public listen(port) {
     this.setMiddleware();
-    this.app.listen(dotenv.PORT, () => console.log(`${dotenv.PORT} port on`));
+    this.app.listen(config.PORT, () => console.log(`${port} port on`));
   }
 }
 
-export { Server };
+export { App };
