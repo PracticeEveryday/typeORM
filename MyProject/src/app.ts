@@ -29,7 +29,7 @@ class App {
 
   private setRouter() {
     this.app.use("/api/users", this.userController.router);
-    this.app.use("/api/profils", this.profileController.router);
+    this.app.use("/api/profiles", this.profileController.router);
   }
 
   private setMiddleware() {

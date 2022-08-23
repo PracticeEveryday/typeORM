@@ -10,4 +10,13 @@ export class ProfileService {
   constructor() {
     this.profileRepository = MyDataSource.getRepository("profile");
   }
+
+  public createProfile = async (user_id, subject, description) => {
+    const newProfile = this.profileRepository.save({
+      user_id,
+      subject,
+      description,
+    });
+    return newProfile;
+  };
 }

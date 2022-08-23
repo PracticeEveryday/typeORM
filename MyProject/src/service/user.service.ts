@@ -50,13 +50,14 @@ export class UserService {
         email: email,
       },
     });
-
+    console.log(foundUser);
     if (!foundUser) {
       // 가입 이메일 없음.
       throw new HttpException(404, "해당 이메일로 가입한 유저가 없습니다.");
     } else if (foundUser.password === password) {
       // 로그인
       const token = makeToken({ userId: foundUser.id });
+      console.log(token);
       return { token };
     } else {
       // 비밀번호 다름
