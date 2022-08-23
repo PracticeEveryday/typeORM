@@ -49,6 +49,9 @@ export class UserService {
       where: {
         email: email,
       },
+      relations: {
+        profile: true,
+      },
     });
     console.log(foundUser);
     if (!foundUser) {
