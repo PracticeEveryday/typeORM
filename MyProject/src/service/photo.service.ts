@@ -10,4 +10,12 @@ export class PhotoService {
   constructor() {
     this.photoRepository = MyDataSource.getRepository("photo");
   }
+
+  public createPhoto = async (user_id, url) => {
+    const newPhoto = this.photoRepository.save({
+      user_id,
+      url,
+    });
+    return newPhoto;
+  };
 }

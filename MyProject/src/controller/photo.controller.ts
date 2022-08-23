@@ -13,5 +13,22 @@ export class PhotoController {
     this.routes();
   }
 
-  private routes() {}
+  private createPhoto = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const url = req.body;
+      const user_id = req.user;
+      const newPhoto = await this.photoService.createPhoto(user_id, url);
+      res.status(201).json(newPhoto);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  private routes() {
+    this.router.post("/photo", checkLogin, this.createPhoto);
+  }
 }
