@@ -1,6 +1,7 @@
 import express from "express";
 
 import { UserController } from "./controller/user.controller";
+import { ProfileController } from "./controller/profile.controller";
 
 import morgan from "morgan";
 import cors from "cors";
@@ -15,6 +16,7 @@ import config from "./config";
 class App {
   public app: express.Application;
   private userController: UserController;
+  private profileController: ProfileController;
   private swaggerSpec;
 
   constructor() {
@@ -22,10 +24,12 @@ class App {
     this.app = app;
     this.swaggerSpec = YAML.load(path.join(__dirname, "../swagger.yaml"));
     this.userController = new UserController();
+    this.profileController = new ProfileController();
   }
 
   private setRouter() {
     this.app.use("/api/users", this.userController.router);
+    this.app.use("/api/profils", this.profileController.router);
   }
 
   private setMiddleware() {
