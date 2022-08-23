@@ -49,11 +49,8 @@ export class UserService {
       where: {
         email: email,
       },
-      relations: {
-        profile: true,
-      },
     });
-    console.log(foundUser);
+
     if (!foundUser) {
       // 가입 이메일 없음.
       throw new HttpException(404, "해당 이메일로 가입한 유저가 없습니다.");
@@ -101,5 +98,26 @@ export class UserService {
       await this.userRepository.save(foundUser);
       return foundUser;
     }
+  };
+
+  // 프로필과 유저 동시 반환 => left Join
+  public getWithProfile = async (userId) => {
+    const foundUser = await this.userRepository.findOne({
+      where: {
+        id: userId,
+      },
+      relations: {
+        profile: true,
+      },
+    });
+
+    const foundUser2 = await this.userRepository
+      .createQueryBuilder("user")
+      .leftJoinAndSelect("user.profile", "profile")
+      .getOne();
+
+    console.log(foundUser2);
+
+    return foundUser;
   };
 }

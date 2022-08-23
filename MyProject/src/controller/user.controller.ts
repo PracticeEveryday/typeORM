@@ -80,6 +80,20 @@ export class UserController {
     }
   };
 
+  private getWithProfile = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const userId = req.user;
+      const userWithProfile = await this.userService.getWithProfile(userId);
+      res.status(200).json(userWithProfile);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   private routes() {
     this.router.post("/register", userValidate, this.register);
     this.router.post("/login", this.login);
@@ -89,5 +103,6 @@ export class UserController {
       checkLogin,
       this.passwordInitialization
     );
+    this.router.post("/loginWithProfile", checkLogin, this.getWithProfile);
   }
 }
