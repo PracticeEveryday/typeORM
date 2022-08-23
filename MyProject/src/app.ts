@@ -2,6 +2,7 @@ import express from "express";
 
 import { UserController } from "./controller/user.controller";
 import { ProfileController } from "./controller/profile.controller";
+import { PhotoController } from "./controller/photo.controller";
 
 import morgan from "morgan";
 import cors from "cors";
@@ -17,6 +18,7 @@ class App {
   public app: express.Application;
   private userController: UserController;
   private profileController: ProfileController;
+  private photoController: PhotoController;
   private swaggerSpec;
 
   constructor() {
@@ -25,11 +27,13 @@ class App {
     this.swaggerSpec = YAML.load(path.join(__dirname, "../swagger.yaml"));
     this.userController = new UserController();
     this.profileController = new ProfileController();
+    this.photoController = new PhotoController();
   }
 
   private setRouter() {
     this.app.use("/api/users", this.userController.router);
     this.app.use("/api/profiles", this.profileController.router);
+    this.app.use("/api/photos", this.photoController.router);
   }
 
   private setMiddleware() {
