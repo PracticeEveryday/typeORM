@@ -1,6 +1,7 @@
 # TypeORM CRUD Practices
 
 - TypeORM을 이용한 CURD Example입니다.
+- User, Profile( 1:1 ), Photo( 1 : M) Entity를 이용한 기본적인 Join을 구현하였습니다.
 
 ## Docker postgreSQL container staring first
 
