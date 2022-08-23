@@ -120,4 +120,25 @@ export class UserService {
 
     return foundUser;
   };
+
+  // 포토와 유저 동시 반환 => left Join
+  public getWithPhoto = async (userId) => {
+    const foundUser = await this.userRepository.findOne({
+      where: {
+        id: userId,
+      },
+      relations: {
+        photos: true,
+      },
+    });
+
+    const foundUser2 = await this.userRepository
+      .createQueryBuilder("user")
+      .leftJoinAndSelect("user.photos", "photo")
+      .getOne();
+
+    console.log(foundUser2);
+
+    return foundUser;
+  };
 }

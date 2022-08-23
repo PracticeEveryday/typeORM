@@ -94,6 +94,20 @@ export class UserController {
     }
   };
 
+  private getWithPhoto = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const userId = req.user;
+      const userWithPhoto = await this.userService.getWithPhoto(userId);
+      res.status(200).json(userWithPhoto);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   private routes() {
     this.router.post("/register", userValidate, this.register);
     this.router.post("/login", this.login);
@@ -103,6 +117,7 @@ export class UserController {
       checkLogin,
       this.passwordInitialization
     );
-    this.router.post("/loginWithProfile", checkLogin, this.getWithProfile);
+    this.router.post("/getWithProfile", checkLogin, this.getWithProfile);
+    this.router.post("/getWithPhoto", checkLogin, this.getWithPhoto);
   }
 }
