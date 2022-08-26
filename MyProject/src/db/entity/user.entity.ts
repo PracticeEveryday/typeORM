@@ -6,12 +6,15 @@ import {
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
+  BaseEntity,
 } from "typeorm";
 import { ProfileEntity } from "./profile.entity";
 import { PhotoEntity } from "./photo.entity";
 
+import { IUser } from "../../models/interface/IUserService";
+
 @Entity("user")
-export class UserEntity {
+export class UserEntity extends BaseEntity implements IUser {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
