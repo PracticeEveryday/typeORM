@@ -19,7 +19,12 @@ SERVER_PORT = 5000
 DB_URL = postgresql://postgres:postgre_password@localhost:5432/postgres
 
 yarn install
-yarn start
+
+If you want start with dev
+yarn start:dev
+
+If you want start with production
+yarn start:prod
 ```
 
 ## Getting test
