@@ -9,8 +9,8 @@ export class UserController {
   public router: Router;
   private userService: UserService;
 
-  constructor() {
-    this.userService = new UserService();
+  constructor(userService) {
+    this.userService = userService;
     this.router = Router();
     this.routes();
   }

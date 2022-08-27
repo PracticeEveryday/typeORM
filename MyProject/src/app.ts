@@ -14,6 +14,10 @@ import path from "path";
 
 import config from "./config";
 
+import { Container } from "typedi";
+import { dependencies } from "./types/typedi/dependencies";
+import { UserService } from "./service/user.service";
+
 class App {
   public app: express.Application;
   private userController: UserController;
@@ -23,9 +27,12 @@ class App {
 
   constructor() {
     const app: express.Application = express();
+    // 의존성 Container set
+    dependencies();
+
     this.app = app;
     this.swaggerSpec = YAML.load(path.join(__dirname, "../swagger.yaml"));
-    this.userController = new UserController();
+    this.userController = new UserController(Container.get(UserService));
     this.profileController = new ProfileController();
     this.photoController = new PhotoController();
   }

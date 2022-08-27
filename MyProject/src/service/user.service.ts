@@ -10,6 +10,9 @@ import { MyDataSource } from "../db/data-source";
 
 import { DeleteResult } from "typeorm";
 
+import { Service } from "typedi";
+
+@Service()
 export class UserService implements IUserService {
   private userRepository: UserRepository;
 
