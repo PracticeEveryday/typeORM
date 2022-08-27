@@ -1,10 +1,11 @@
-import { PhotoEntity } from "../db/entity/photo.entity";
 import { PhotoRepository } from "../repository/photo.repository";
+
+import { IPhotoService } from "../types";
 
 import { HttpException } from "../setting/exception/httpException";
 import { MyDataSource } from "../db/data-source";
 
-export class PhotoService {
+export class PhotoService implements IPhotoService {
   private photoRepository: PhotoRepository;
 
   constructor() {
