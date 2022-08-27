@@ -1,7 +1,7 @@
 import { UserEntity } from "../db/entity/user.entity";
 import { UserRepository } from "../repository/user.repository";
 
-import { IUserService } from "../models/interface/IUserService";
+import { IUserService } from "../types";
 
 import { makeToken } from "../utils/jwtUtil";
 

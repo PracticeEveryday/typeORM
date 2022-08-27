@@ -11,7 +11,7 @@ import {
 import { ProfileEntity } from "./profile.entity";
 import { PhotoEntity } from "./photo.entity";
 
-import { IUser } from "../../models/interface/IUserService";
+import { IUser } from "../../types";
 
 @Entity("user")
 export class UserEntity extends BaseEntity implements IUser {

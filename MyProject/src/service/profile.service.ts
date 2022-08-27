@@ -1,7 +1,7 @@
 import { ProfileEntity } from "../db/entity/profile.entity";
 import { ProfileRepository } from "../repository/profile.repository";
 
-import { IProfileService } from "../models/interface/IProfileService";
+import { IProfileService } from "../types";
 
 import { HttpException } from "../setting/exception/httpException";
 import { MyDataSource } from "../db/data-source";

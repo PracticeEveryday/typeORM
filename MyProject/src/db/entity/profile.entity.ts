@@ -10,8 +10,8 @@ import {
 } from "typeorm";
 import { UserEntity } from "./user.entity";
 
-import { IProfile } from "../../models/interface/IProfileService";
-import { IUser } from "../../models/interface/IUserService";
+import { IProfile } from "../../types/interface/IProfileService";
+import { IUser } from "../../types";
 
 @Entity("profile")
 export class ProfileEntity extends BaseEntity implements IProfile {
