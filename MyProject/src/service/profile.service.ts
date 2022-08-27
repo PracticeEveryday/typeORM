@@ -1,10 +1,12 @@
 import { ProfileEntity } from "../db/entity/profile.entity";
 import { ProfileRepository } from "../repository/profile.repository";
 
+import { IProfileService } from "../models/interface/IProfileService";
+
 import { HttpException } from "../setting/exception/httpException";
 import { MyDataSource } from "../db/data-source";
 
-export class ProfileService {
+export class ProfileService implements IProfileService {
   private profileRepository: ProfileRepository;
 
   constructor() {

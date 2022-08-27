@@ -6,11 +6,15 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  BaseEntity,
 } from "typeorm";
 import { UserEntity } from "./user.entity";
 
+import { IProfile } from "../../models/interface/IProfileService";
+import { IUser } from "../../models/interface/IUserService";
+
 @Entity("profile")
-export class ProfileEntity {
+export class ProfileEntity extends BaseEntity implements IProfile {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -29,5 +33,5 @@ export class ProfileEntity {
 
   @OneToOne((type) => UserEntity, (UserEntity) => UserEntity.profile)
   @JoinColumn()
-  user_id: UserEntity;
+  user_id: IUser;
 }
