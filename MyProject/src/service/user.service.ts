@@ -118,8 +118,6 @@ export class UserService implements IUserService {
       .leftJoinAndSelect("user.profile", "profile")
       .getOne();
 
-    console.log(foundUser2);
-
     return foundUser;
   };
 
@@ -138,8 +136,6 @@ export class UserService implements IUserService {
       .createQueryBuilder("user")
       .leftJoinAndSelect("user.photos", "photo")
       .getOne();
-
-    console.log(foundUser2);
 
     return foundUser;
   };

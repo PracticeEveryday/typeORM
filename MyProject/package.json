@@ -13,11 +13,13 @@
     "@types/yamljs": "^0.2.31",
     "chai": "^4.3.6",
     "class-validator": "^0.13.2",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
     "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",
     "mocha": "^10.0.0",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.19",
     "path": "^0.12.7",
     "swagger-cli": "^4.0.4",
     "swagger-ui-express": "^4.5.0",
@@ -33,13 +35,16 @@
     "pg": "^8.4.0",
     "reflect-metadata": "^0.1.13",
     "tsc-watch": "^5.0.3",
-    "typeorm": "0.3.7"
+    "typeorm": "0.3.7",
+    "winston": "^3.8.1"
   },
   "scripts": {
-    "start": "tsc-watch --onSuccess \"node dist/bin/index.js\"",
-    "typeorm": "typeorm-ts-node-commonjs",
     "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile swagger.yaml --type yaml",
     "prestart": "npm run api-docs",
-    "test": "yarn mocha test/**/*.spec.ts -r ts-node/register"
+    "predev": "npm run api-docs",
+    "build": "rm -rf dist && npx tsc --project tsconfig.production.json",
+    "test": "yarn mocha test/**/*.spec.ts -r ts-node/register",
+    "start:dev": "cross-env NODE_ENV=development nodemon --exec \"ts-node\" ./src/bin/index.ts",
+    "start:prod": "yarn run build && NODE_ENV=production node ./dist/bin/index.js"
   }
 }

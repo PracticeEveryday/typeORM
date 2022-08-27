@@ -4,6 +4,7 @@ import { MyDataSource } from "../db/data-source";
 
 import { DataSource } from "typeorm";
 
+import { logger } from "../setting/log/winston";
 import config from "../config";
 
 class Server {

@@ -17,6 +17,7 @@ import config from "./config";
 import { Container } from "typedi";
 import { dependencies } from "./types/typedi/dependencies";
 import { UserService } from "./service/user.service";
+import { logger } from "./setting/log/winston";
 
 class App {
   public app: express.Application;
@@ -66,7 +67,17 @@ class App {
 
   public listen(port) {
     this.setMiddleware();
-    this.app.listen(config.PORT, () => console.log(`${port} port on`));
+    logger.info(process.env.NODE_ENV);
+    this.app.listen(config.PORT, () => {
+      logger.info(
+        `TypeORM API Dev Server is running on: http://localhost:${port}`
+      );
+      if (config.nodeEnv === "production") {
+        console.log(
+          `TypeORM API production Server is running on: http://localhost:${port}`
+        );
+      }
+    });
   }
 }
 
