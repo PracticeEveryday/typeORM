@@ -35,8 +35,8 @@ export class UserEntity extends BaseEntity implements IUser {
   update_dt: Date;
 
   @OneToOne((type) => ProfileEntity, (ProfileEntity) => ProfileEntity.user_id)
-  profile: ProfileEntity;
+  profile;
 
   @OneToMany((type) => PhotoEntity, (PhotoEntity) => PhotoEntity.user_id)
-  photos: PhotoEntity[];
+  photos;
 }

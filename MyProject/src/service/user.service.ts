@@ -1,6 +1,8 @@
 import { UserEntity } from "../db/entity/user.entity";
 import { UserRepository } from "../repository/user.repository";
 
+import { IUserService } from "../models/interface/IUserService";
+
 import { makeToken } from "../utils/jwtUtil";
 
 import { HttpException } from "../setting/exception/httpException";
@@ -8,7 +10,7 @@ import { MyDataSource } from "../db/data-source";
 
 import { DeleteResult } from "typeorm";
 
-export class UserService {
+export class UserService implements IUserService {
   private userRepository: UserRepository;
 
   constructor() {
@@ -16,7 +18,7 @@ export class UserService {
   }
 
   // 회원가입
-  public register = async (user: UserEntity): Promise<UserEntity> => {
+  public register = async (user) => {
     if (user.email === undefined) {
       throw new HttpException(400, "이메일을 입력하세요");
     }
@@ -37,10 +39,7 @@ export class UserService {
   };
 
   // 로그인
-  public login = async (
-    email: string,
-    password: string
-  ): Promise<{ token: string } | UserEntity> => {
+  public login = async (email, password) => {
     if (email === undefined) {
       throw new HttpException(400, "이메일을 입력하세요");
     }
@@ -83,7 +82,7 @@ export class UserService {
   };
 
   // 비밀변호 초기화
-  public passwordInitialization = async (userId: string) => {
+  public passwordInitialization = async (userId) => {
     const foundUser = await this.userRepository.findOne({
       where: {
         id: userId,
