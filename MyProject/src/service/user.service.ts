@@ -59,7 +59,7 @@ export class UserService implements IUserService {
     } else if (foundUser.password === password) {
       // 로그인
       const token = makeToken({ userId: foundUser.id });
-      console.log(token);
+
       return { token };
     } else {
       // 비밀번호 다름

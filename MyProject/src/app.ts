@@ -17,7 +17,7 @@ import config from "./config";
 import { Container } from "typedi";
 import { dependencies } from "./types/typedi/dependencies";
 import { UserService } from "./service/user.service";
-import { logger } from "./setting/log/winston";
+import { logger, stream } from "./setting/log/winston";
 
 class App {
   public app: express.Application;
@@ -48,7 +48,12 @@ class App {
     this.app.use(cors());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
-    this.app.use(morgan("dev"));
+    this.app.use(
+      morgan(
+        "HTTP/:http-version :method :remote-addr :url :remote-user :status :res[content-length] :referrer :user-agent :response-time ms",
+        { stream }
+      )
+    );
 
     this.app.get("/", (req, res) => {
       res.status(200).send("Hello");

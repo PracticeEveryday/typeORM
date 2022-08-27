@@ -92,4 +92,10 @@ const logger = winston.createLogger({
   transports: transports,
 });
 
-export { logger };
+const stream = {
+  write: (message) => {
+    logger.info(message);
+  },
+};
+
+export { logger, stream };
