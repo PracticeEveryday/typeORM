@@ -17,7 +17,7 @@ import config from "./config";
 import { Container } from "typedi";
 import { dependencies } from "./types/typedi/dependencies";
 import { UserService } from "./service/user.service";
-import { logger, stream } from "./setting/log/winston";
+import { logger, format, skip, stream } from "./setting/log/winston";
 
 class App {
   public app: express.Application;
@@ -48,17 +48,16 @@ class App {
     this.app.use(cors());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
-    this.app.use(
-      morgan(
-        "HTTP/:http-version :method :remote-addr :url :remote-user :status :res[content-length] :referrer :user-agent :response-time ms",
-        { stream }
-      )
-    );
+    this.app.use(morgan(format(), { stream, skip }));
 
     this.app.get("/", (req, res) => {
       res.status(200).send("Hello");
     });
 
+    this.app.get("/error", (req, res) => {
+      logger.error("Error message");
+      res.sendStatus(500);
+    });
     // swagger
     this.app.use(
       "/swagger",
