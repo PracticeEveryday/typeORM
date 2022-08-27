@@ -18,6 +18,7 @@ const logFormat = printf(({ level, message, label, timestamp }) => {
 
 const logger = winston.createLogger({
   format: combine(
+    colorize(),
     timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
     logFormat // log 출력 포맷
     //? format: combine() 에서 정의한 timestamp와 label 형식값이 logFormat에 들어가서 정의되게 된다. level이나 message는 콘솔에서 자동 정의
@@ -61,7 +62,6 @@ switch (config.nodeEnv) {
         level: "silly",
         //* 로그 출력 형식 정의
         format: combine(
-          colorize(),
           label({ label: "development" }), // 어플리케이션 이름
           logFormat
         ),
@@ -88,30 +88,8 @@ switch (config.nodeEnv) {
       new winston.transports.Console({
         level: "info",
         format: combine(
-          colorize(),
-          cli(),
-          splat(),
-          errors({ stack: true }),
-          timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
           label({ label: "test" }), // 어플리케이션 이름
-          logFormat // log 출력 포맷
-          //? format: combine() 에서 정의한 timestamp와 label 형식값이 logFormat에 들어가서 정의되게 된다. level이나 message는 콘솔에서 자동 정의
-        ),
-      })
-    );
-    logger.add(
-      new winston.transports.File({
-        filename: "%DATE%.error.log",
-        level: "error",
-        format: combine(
-          colorize(),
-          cli(),
-          splat(),
-          errors({ stack: true }),
-          timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
-          label({ label: "test" }), // 어플리케이션 이름
-          logFormat // log 출력 포맷
-          //? format: combine() 에서 정의한 timestamp와 label 형식값이 logFormat에 들어가서 정의되게 된다. level이나 message는 콘솔에서 자동 정의
+          logFormat
         ),
       })
     );
