@@ -18,6 +18,8 @@ import { Container } from "typedi";
 import { dependencies } from "./types/typedi/dependencies";
 import { UserService } from "./service/user.service";
 import { logger, format, skip, stream } from "./setting/log/winston";
+import { ProfileService } from "./service/profile.service";
+import { PhotoService } from "./service/photo.service";
 
 class App {
   public app: express.Application;
@@ -34,8 +36,10 @@ class App {
     this.app = app;
     this.swaggerSpec = YAML.load(path.join(__dirname, "../swagger.yaml"));
     this.userController = new UserController(Container.get(UserService));
-    this.profileController = new ProfileController();
-    this.photoController = new PhotoController();
+    this.profileController = new ProfileController(
+      Container.get(ProfileService)
+    );
+    this.photoController = new PhotoController(Container.get(PhotoService));
   }
 
   private setRouter() {

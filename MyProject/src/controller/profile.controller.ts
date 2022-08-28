@@ -7,8 +7,8 @@ export class ProfileController {
   public router: Router;
   private profileService: ProfileService;
 
-  constructor() {
-    this.profileService = new ProfileService();
+  constructor(profileService) {
+    this.profileService = profileService;
     this.router = Router();
     this.routes();
   }

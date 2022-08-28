@@ -7,8 +7,8 @@ export class PhotoController {
   public router: Router;
   private photoService: PhotoService;
 
-  constructor() {
-    this.photoService = new PhotoService();
+  constructor(photoService) {
+    this.photoService = photoService;
     this.router = Router();
     this.routes();
   }
