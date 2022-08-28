@@ -4,7 +4,9 @@ import { IPhotoService } from "../types";
 
 import { HttpException } from "../setting/exception/httpException";
 import { MyDataSource } from "../db/data-source";
+import { Service } from "typedi";
 
+@Service()
 export class PhotoService implements IPhotoService {
   private photoRepository: PhotoRepository;
 
