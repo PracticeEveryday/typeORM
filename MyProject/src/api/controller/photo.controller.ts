@@ -1,8 +1,8 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { PhotoEntity } from "../db/entity/photo.entity";
-import { PhotoService } from "../service/photo.service";
+import { PhotoEntity } from "../../db/entity/photo.entity";
+import { PhotoService } from "../../service/photo.service";
 
-import { checkLogin } from "../setting/middlewares/checkLogin";
+import { checkLogin } from "../middlewares/checkLogin";
 export class PhotoController {
   public router: Router;
   private photoService: PhotoService;

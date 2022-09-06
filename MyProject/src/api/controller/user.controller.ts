@@ -1,10 +1,10 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { UserEntity } from "../db/entity/user.entity";
-import { UserService } from "../service/user.service";
+import { UserEntity } from "../../db/entity/user.entity";
+import { UserService } from "../../service/user.service";
 
 import { userValidate, userValidateOptional } from "./validator/user.validator";
 
-import { checkLogin } from "../setting/middlewares/checkLogin";
+import { checkLogin } from "../middlewares/checkLogin";
 export class UserController {
   public router: Router;
   private userService: UserService;

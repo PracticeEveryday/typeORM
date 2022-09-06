@@ -1,8 +1,8 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { ProfileEntity } from "../db/entity/profile.entity";
-import { ProfileService } from "../service/profile.service";
+import { ProfileEntity } from "../../db/entity/profile.entity";
+import { ProfileService } from "../../service/profile.service";
 
-import { checkLogin } from "../setting/middlewares/checkLogin";
+import { checkLogin } from "../middlewares/checkLogin";
 export class ProfileController {
   public router: Router;
   private profileService: ProfileService;

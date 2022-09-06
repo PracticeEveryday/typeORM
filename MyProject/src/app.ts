@@ -1,12 +1,12 @@
 import express from "express";
 
-import { UserController } from "./controller/user.controller";
-import { ProfileController } from "./controller/profile.controller";
-import { PhotoController } from "./controller/photo.controller";
+import { UserController } from "./api/controller/user.controller";
+import { ProfileController } from "./api/controller/profile.controller";
+import { PhotoController } from "./api/controller/photo.controller";
 
 import morgan from "morgan";
 import cors from "cors";
-import { errorMiddleware } from "./setting/middlewares/errorMiddleware";
+import { errorMiddleware } from "./api/middlewares/errorMiddleware";
 
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
