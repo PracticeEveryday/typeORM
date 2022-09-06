@@ -21,6 +21,8 @@ import { logger, format, skip, stream } from "./setting/log/winston";
 import { ProfileService } from "./service/profile.service";
 import { PhotoService } from "./service/photo.service";
 
+import { UserRepositoryModel } from "./repository/user.repository";
+
 class App {
   public app: express.Application;
   private userController: UserController;
@@ -35,7 +37,9 @@ class App {
 
     this.app = app;
     this.swaggerSpec = YAML.load(path.join(__dirname, "../swagger.yaml"));
-    this.userController = new UserController(Container.get(UserService));
+    this.userController = new UserController(
+      new UserService(new UserRepositoryModel())
+    );
     this.profileController = new ProfileController(
       Container.get(ProfileService)
     );

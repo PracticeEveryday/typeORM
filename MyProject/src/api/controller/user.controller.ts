@@ -16,14 +16,10 @@ export class UserController {
   }
 
   // 회원가입
-  private register = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
+  private signUp = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const user = req.body as UserEntity;
-      const newUser = await this.userService.register(user);
+      const newUser = await this.userService.signUp(user);
       res.status(201).json(newUser);
     } catch (error) {
       next(error);
@@ -109,11 +105,11 @@ export class UserController {
   };
 
   private routes() {
-    this.router.post("/register", userValidate, this.register);
+    this.router.post("/signUp", userValidate, this.signUp);
     this.router.post("/login", this.login);
-    this.router.delete("/withdrawal", checkLogin, this.deleteUser);
+    this.router.delete("/user", checkLogin, this.deleteUser);
     this.router.put(
-      "/passwordInitialization",
+      "/password/initialization",
       checkLogin,
       this.passwordInitialization
     );

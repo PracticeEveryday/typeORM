@@ -13,7 +13,7 @@ export interface IUser {
 }
 
 export interface IUserService {
-  register(user: IUser): Promise<IUser>;
+  signUp(user: IUser): Promise<IUser>;
   login(email: string, password: string): Promise<{ token: string }>;
   deleteUser(userId: string): Promise<DeleteResult>;
   passwordInitialization(userId: string): Promise<IUser>;
