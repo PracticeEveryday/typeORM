@@ -1,9 +1,9 @@
-import { expect } from "chai";
-import { sum } from "./index";
+import { sum } from "./";
 
-describe("index.ts 테스트", () => {
-  it("sum 테스트", () => {
-    expect(sum(1, 1)).to.equal(2);
-    expect(sum(1, 1)).to.not.equal("귀요미");
+import { describe, expect, test } from "@jest/globals";
+
+describe("sum module", () => {
+  test("adds 1 + 2 to equal 3", () => {
+    expect(sum(1, 2)).toBe(3);
   });
 });

@@ -1,5 +1,4 @@
-/* index.ts */
-
-export function sum(x: number, y: number): number {
-  return x + y;
+function sum(a, b) {
+  return a + b;
 }
+export { sum };
