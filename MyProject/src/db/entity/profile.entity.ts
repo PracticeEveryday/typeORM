@@ -21,7 +21,7 @@ export class ProfileEntity extends BaseEntity implements IProfile {
   @Column({ name: "subject", type: "varchar", unique: true, nullable: false })
   subject: string;
 
-  @Column({ name: "description", type: "varchar", nullable: false })
+  @Column({ name: "description", type: "varchar", nullable: true })
   description: string;
 
   @CreateDateColumn({ name: "create_dt", type: "timestamptz", nullable: false })

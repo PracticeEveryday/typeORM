@@ -24,7 +24,7 @@ export class UserEntity extends BaseEntity implements IUser {
   @Column({ nullable: false })
   password: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: true })
   name: string;
 
   @CreateDateColumn({ name: "create_dt", type: "timestamptz", nullable: false })
